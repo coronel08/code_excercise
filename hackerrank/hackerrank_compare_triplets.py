@@ -31,7 +31,7 @@ def compareTriplets(a, b):
     return countA, countB
     
 
-// Refractored to one liner
+# Refractored to one liner
 def compareTriplets(a,b):
     result = [1 if x>y else -1 if  y>x else 0 for x,y in list(zip(a,b))]
     return result.count(1), result.count(-1)

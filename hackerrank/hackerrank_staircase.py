@@ -18,7 +18,7 @@ This is a staircase of size 6:
 #         hashtag = '#'* (i+1)
 #         print(f'{blanks + hashtag}')
 
-// Refractored
+# Refractored
 def staircase(n):
     for i in range(n):
         print(' '*(n-i-1) + '#'*(i+1) )
