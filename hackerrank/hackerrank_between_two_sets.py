@@ -41,3 +41,57 @@ getTotalX(a,b)
     
 #     print(common_list)
 #     print(set(answer_list))
+
+
+
+
+
+
+"""
+Javascript answer
+
+
+function getTotalX(a, b) {
+    let maxA = Math.max(...a)
+    let minB = Math.min(...b)
+    let list1 = [], list2 = []
+
+    // Refractored better below
+    // const isDivisble = (list, index) => list.every(val => {
+        //     if (val % index == 0) {
+            //         list1.push(index)
+            //     }
+            // })
+            
+    // takes array and iterable from loop, returns iterable/index if every val is isDivisble by i
+    const isDivisble = (list, index) => {
+        if (list%index == 0){
+            return index
+        }
+    }
+
+    for (let index = maxA; index <= minB; index++) {
+        b.every((x) => isDivisble(x, index)) ? list1.push(index): ""
+    }
+    // console.log(list1)
+
+    let answer = list1.filter(testNum => (
+        a.every(item => isDivisble(testNum,item))
+    ))
+    
+    return answer.length
+    // console.log(list1.filter(testNum => (
+    //     a.every(item => testNum%item==0)
+    // )))
+}
+
+// let a = [2, 4]
+// let b = [16, 32, 96]
+// let a = [3,4]
+// let b = [24, 48]
+let a = [2]
+let b = [20,30,12]
+
+getTotalX(a, b)
+
+"""
