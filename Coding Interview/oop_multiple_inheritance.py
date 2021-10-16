@@ -93,3 +93,68 @@ class Horses(Animal):
 cooky = Dogs()
 cooky.isMammal()
 cooky.printFactors()
+
+
+
+
+
+"""
+Decorators @property https://www.freecodecamp.org/news/python-property-decorator/
+Exmaple used https://blog.teclado.com/python-abc-abstract-base-classes/
+"""
+
+from abc import ABC, abstractmethod
+
+class Animal(ABC): # Inherit from ABC
+    @property
+    def food_eaten(self):
+        return self._food
+    
+    @food_eaten.setter
+    def food_eaten(self, food):
+        if food in self.diet:
+            self._food = food
+        else:
+            raise ValueError(f"You can't feed this animal with {food}")
+
+    @property
+    @abstractmethod
+    def diet(self):
+        pass
+
+    @abstractmethod # Decorator to define abstract method
+    def feed(self, action):
+        pass
+
+class Lion(Animal):
+    @property
+    def diet(self):
+        return ["antelope", "cheetah", "buffalo"]
+
+    def feed(self, time):
+        print(f"Feeding a lion {self._food} at {time}")
+
+class Panda(Animal):
+    @property
+    def diet(self):
+        return ["bamboo", "grass"]
+
+    def feed(self, time):
+        print(f"Feeding a panda {self._food} at {time}")
+
+class Snake(Animal):
+    @property
+    def diet(self):
+        return ["frog", "rabbit"]
+
+    def feed(self, time):
+        print(f"Feeding a snake {self._food} at {time}")
+
+
+leo =Lion()
+leo.food_eaten="antelope"
+leo.feed("10pm")
+
+adam = Snake()
+adam.food_eaten = "frog"
+adam.feed("8pm")
