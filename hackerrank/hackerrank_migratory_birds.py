@@ -7,6 +7,8 @@ def migratoryBirds(arr):
     dct = {}
     for i in arr:
         if i not in dct:
+            # alternative dct count method below            
+            # dct[i] = dct.get(i,0) +1             
             dct[i] = arr.count(i)
 
     maxValue = (max(dct.values()))
