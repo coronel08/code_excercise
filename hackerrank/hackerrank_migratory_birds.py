@@ -31,6 +31,7 @@ arr = [1,1,2,2,3]
 
 function migratoryBirds(arr){
     counts = {}
+    // could also use map
     arr.forEach((i) => counts[i] = (counts[i] || 0) +1)
     console.log(counts)
     maxValue = Object.values(counts).reduce((cur,prev) => cur > prev ? cur:prev)
