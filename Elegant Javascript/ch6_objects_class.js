@@ -57,7 +57,7 @@ class Group{
         }
 
         // Using filter isntead 
-        // return this.group.filter(i => i != item)
+        // return this.group.filter(i => i !== item)
     }
 
     has(item){
