@@ -1,4 +1,4 @@
-// Ch 6.1 Excercise 
+// Ch 6.1 Exercise Notes https://gist.github.com/jonurry?page=4
 /*
 A class named Vec, takes x and y parameters that save to properties of the same name.
 has 2 methods, plus and minus that take another vector as a parameter and return a new vector that has sum or diff between values
@@ -31,7 +31,7 @@ console.log(new Vec(3, 4).length) // → 5
 
 
 
-// Ch 6.2 Excercise
+// Ch 6.2 Exercise Groups
 /*
 Create a class Groups that has methods named add, delete, and has. constructor creates an empty group
 Method adds will add a value to the group if it isnt aalready there. Method delete removes from group.
@@ -91,3 +91,63 @@ console.log(group)
 let group = new Group();
 group.from([12, 8 ,32, 10, 20, 3])
 */
+
+
+
+
+
+
+/* Ch: 6.3 Exercise Iterable groups
+Make the group class iterable, avoid using Symbol.iterator on the array
+
+*/
+
+
+class GroupIterator{
+    constructor(obj){
+        this.count = 0,
+        this.group = obj.group
+    }
+    
+    next(){
+        if (this.count == this.group.length){
+            return {done: true}
+        }
+
+        let value = this.group[this.count]
+        this.count ++
+
+        return {value, done:false}
+    }
+}
+
+// Could also add this into the Group class as following below in the comments:
+// [Symbol.iterator](){return new GroupIterator(this}
+Group.prototype[Symbol.iterator] = function(){
+    return new GroupIterator(this)
+}
+
+for(let value of Group.from(["a", "b", "c"])){
+    console.log(value)
+}
+
+
+
+
+
+
+/* Ch 6.4 Exercise Borrowing a method
+Earlier in the chapter, I mentioned that an object’s hasOwnProperty can be used as a more robust alternative to the in 
+operator when you want to ignore the prototype’s properties. But what if your map needs to include the word "hasOwnProperty"? 
+You won’t be able to call that method anymore because the object’s own property hides the method value.
+
+Can you think of a way to call hasOwnProperty on an object that has its own property by that name?
+*/
+
+
+let map = {one: true, two: true, hasOwnProperty: true};
+
+// Fix this call
+// console.log(map.hasOwnProperty("one")); // → true
+
+console.log(hasOwnProperty.call(map,"one"))
